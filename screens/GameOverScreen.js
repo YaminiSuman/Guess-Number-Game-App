@@ -12,7 +12,7 @@ function GameOverScreen({round,pickedNumber,onRestart}) {
         <Image style={styles.image} source={require("../assets/success.png")} />
       </View>
       <Text style={styles.summaryText}>
-        Your phone needed <Text style={styles.highlight}>X</Text> rounds to
+        Your phone needed <Text style={styles.highlight}>{round}</Text> rounds to
         guess the number <Text style={styles.highlight}>{pickedNumber}</Text>.
       </Text>
       <PrimaryButton onPress={onRestart}>Start New Game</PrimaryButton>
