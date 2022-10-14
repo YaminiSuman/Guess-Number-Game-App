@@ -29,6 +29,10 @@ export default function App() {
     setGameIsOver(true);
   }
 
+  function restartGameHandler() {
+    setPickedNumber(null);
+    setGameIsOver(false);
+  }
   let screen = <StartGameScreen onPick={pickedNumberHandler} />;
 
   if (pickedNumber) {
@@ -38,7 +42,12 @@ export default function App() {
   }
 
   if (gameIsOver) {
-    screen = <GameOverScreen />;
+    screen = (
+      <GameOverScreen
+        pickedNumber={pickedNumber}
+        onRestart={restartGameHandler}
+      />
+    );
   }
 
   return (

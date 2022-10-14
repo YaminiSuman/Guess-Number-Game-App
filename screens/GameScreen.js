@@ -28,6 +28,8 @@ function GameScreen({ userNumber, onGameOver }) {
   useEffect(() => {
     if (currentGuess === userNumber) {
       onGameOver();
+      minBoundary = 1;
+      maxBoundary = 100;
     }
   }, [currentGuess, userNumber, onGameOver]);
 

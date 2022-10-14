@@ -4,21 +4,18 @@ import Title from "../components/ui/Title";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Colors from "../constants/colors";
 
-function GameOverScreen() {
+function GameOverScreen({round,pickedNumber,onRestart}) {
   return (
     <View style={styles.rootContainer}>
       <Title>GAME OVER!</Title>
       <View style={styles.imageContainer}>
-        <Image
-          style={styles.image}
-          source={require("../assets/success.png")}
-        />
+        <Image style={styles.image} source={require("../assets/success.png")} />
       </View>
       <Text style={styles.summaryText}>
         Your phone needed <Text style={styles.highlight}>X</Text> rounds to
-        guess the number <Text style={styles.highlight}>Y</Text>.
+        guess the number <Text style={styles.highlight}>{pickedNumber}</Text>.
       </Text>
-      <PrimaryButton>Start New Game</PrimaryButton>
+      <PrimaryButton onPress={onRestart}>Start New Game</PrimaryButton>
     </View>
   );
 }
