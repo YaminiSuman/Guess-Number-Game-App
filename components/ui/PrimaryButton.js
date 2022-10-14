@@ -3,7 +3,6 @@ import Colors from "../../constants/colors";
 
 function PrimaryButton({ children, onPress }) {
   function pressHandler() {
-    console.log("Pressed!");
     onPress();
   }
 
