@@ -5,19 +5,30 @@ import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
 import Colors from "./constants/colors";
 import GameOverScreen from "./screens/GameOverScreen";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
 export default function App() {
   const [pickedNumber, setPickedNumber] = useState(null);
   const [gameIsOver, setGameIsOver] = useState(false);
-  
+
+  const [fontsLoaded] = useFonts({
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   function pickedNumberHandler(pickedNumber) {
     setPickedNumber(pickedNumber);
   }
 
-    function gameOverHandler() {
-      setGameIsOver(true);
-    }
-  
+  function gameOverHandler() {
+    setGameIsOver(true);
+  }
+
   let screen = <StartGameScreen onPick={pickedNumberHandler} />;
 
   if (pickedNumber) {
@@ -26,10 +37,10 @@ export default function App() {
     );
   }
 
-    if (gameIsOver) {
-      screen = <GameOverScreen />;
-    }
-  
+  if (gameIsOver) {
+    screen = <GameOverScreen />;
+  }
+
   return (
     <LinearGradient
       colors={[Colors.primary700, Colors.accent500]}

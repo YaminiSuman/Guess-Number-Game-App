@@ -2,6 +2,10 @@ import { TextInput, View, StyleSheet, Alert } from "react-native";
 import { useState } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Colors from "../constants/colors";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
+import Title from "../components/ui/Title";
+
 
 function StartGameScreen({ onPick }) {
   const [inputValue, setInputVale] = useState("");
@@ -27,24 +31,28 @@ function StartGameScreen({ onPick }) {
   }
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.numberInput}
-        maxLength={2}
-        keyboardType="number-pad"
-        autoCapitalize="none"
-        autoCorrect={false}
-        onChangeText={inputHandle}
-        value={inputValue}
-      />
-      <View style={styles.buttonsContainer}>
-        <View style={styles.buttonContainer}>
-          <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+    <View style={styles.rootContainer}>
+      <Title>Guess My Number</Title>
+      <Card>
+        <InstructionText>Enter a Number</InstructionText>
+        <TextInput
+          style={styles.numberInput}
+          maxLength={2}
+          keyboardType="number-pad"
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={inputHandle}
+          value={inputValue}
+        />
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+          </View>
         </View>
-        <View style={styles.buttonContainer}>
-          <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
-        </View>
-      </View>
+      </Card>
     </View>
   );
 }
@@ -52,6 +60,11 @@ function StartGameScreen({ onPick }) {
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    marginTop: 100,
+    alignItems: "center",
+  },
   inputContainer: {
     justifyContent: "center",
     alignItems: "center",
