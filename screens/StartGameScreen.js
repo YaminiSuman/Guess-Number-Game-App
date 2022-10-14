@@ -24,7 +24,6 @@ function StartGameScreen({ onPick }) {
       return;
     }
     onPick(chosenNumber);
-    console.log("Valid number!");
   }
 
   return (

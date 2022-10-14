@@ -4,20 +4,32 @@ import { useState } from "react";
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
 import Colors from "./constants/colors";
+import GameOverScreen from "./screens/GameOverScreen";
 
 export default function App() {
   const [pickedNumber, setPickedNumber] = useState(null);
-
+  const [gameIsOver, setGameIsOver] = useState(false);
+  
   function pickedNumberHandler(pickedNumber) {
     setPickedNumber(pickedNumber);
   }
 
+    function gameOverHandler() {
+      setGameIsOver(true);
+    }
+  
   let screen = <StartGameScreen onPick={pickedNumberHandler} />;
 
   if (pickedNumber) {
-    screen = <GameScreen userNumber={pickedNumber} />;
+    screen = (
+      <GameScreen userNumber={pickedNumber} onGameOver={gameOverHandler} />
+    );
   }
 
+    if (gameIsOver) {
+      screen = <GameOverScreen />;
+    }
+  
   return (
     <LinearGradient
       colors={[Colors.primary700, Colors.accent500]}
